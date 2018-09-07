@@ -19,15 +19,15 @@ namespace Stack
 
         public void Push(object item)
         {
-            StackArray.Add(item);
+            StackArray.Insert(0, item);
         }
 
         public object Pop()
         {
             try
             {
-                var lastItem = StackArray[StackArray.Count - 1]; 
-                StackArray.RemoveAt(StackArray.Count - 1);
+                var lastItem = StackArray[0]; 
+                StackArray.RemoveAt(0);
                 return lastItem;
             }
             catch(ArgumentOutOfRangeException)
@@ -41,7 +41,7 @@ namespace Stack
         {
             try
             {
-                return StackArray[StackArray.Count - 1];
+                return StackArray[0];
             }
             catch(ArgumentOutOfRangeException)
             {

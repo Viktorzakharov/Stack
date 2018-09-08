@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Stack
 {
     class Test
@@ -22,6 +21,7 @@ namespace Stack
             stack.Write();
 
             Console.WriteLine(stack.Peak());
+
         }
 
         public static void Test2(Stack stack)
@@ -33,6 +33,15 @@ namespace Stack
             stack.Write();
             Console.WriteLine(stack.Pop());
             stack.Write();
+        }
+
+        public static void BracketsBalance(string[] lines)
+        {
+            foreach (var line in lines)
+            {
+                Console.WriteLine(line);
+                FindBracketsBalance.BracketsBalance(line);
+            }
         }
     }
 }

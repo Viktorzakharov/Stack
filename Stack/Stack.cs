@@ -32,7 +32,7 @@ namespace Stack
             }
             catch(ArgumentOutOfRangeException)
             {
-                Console.WriteLine("Стэк пуст! Извлекать нечего!");
+                Console.Write("Стэк пуст! Извлекать нечего!");
                 return null;
             }
         }

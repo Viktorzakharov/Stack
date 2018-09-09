@@ -42,6 +42,16 @@ namespace Stack
                 Console.WriteLine(line);
                 FindBracketsBalance.BracketsBalance(line);
             }
+            Console.WriteLine();
+        }
+
+        public static void PostfixExpressionSolve(string[] lines)
+        {
+            foreach (var item in lines)
+                Console.Write(item);
+
+            Console.WriteLine();
+            Console.WriteLine(PostfixExpression.Solve(lines));
         }
     }
 }

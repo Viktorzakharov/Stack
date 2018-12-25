@@ -1,26 +1,20 @@
-﻿using System;
-
-namespace Stack
+﻿namespace AlgorithmsDataStructures
 {
-    class FindBracketsBalance
+    public class FindBracketsBalance
     {
-        public static void BracketsBalance(string line)
+        public static bool BracketsBalance(string line)
         {
-            var stack = new Stack();
+            var stack = new Stack<char>();
 
             foreach (var item in line)
             {
-                if (item == '(') stack.Push(item);
+                if (item == '(') stack.push(item);
                 else if (item == ')')
-                    if (stack.Pop() == null)
-                    {
-                        Console.WriteLine("Скобки не парные!");
-                        return;
-                    }
+                    if (stack.pop() == default(char)) return false;
             }
 
-            if (stack.Size() == 0) Console.WriteLine("Скобки парные!");
-            else Console.WriteLine("Скобки не парные!");
+            if (stack.size() == 0) return true;
+            return false;
         }
     }
 }

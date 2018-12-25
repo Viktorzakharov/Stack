@@ -1,38 +1,44 @@
-﻿using System;
+﻿using System.Data;
 
-namespace Stack
+namespace AlgorithmsDataStructures
 {
-    class PostfixExpression
+    public class PostfixExpression
     {
-        public static double Solve(string[] expression)
+        public static double Solve(string expression)
         {
-            var allValues = new Stack();
-            var numbersValues = new Stack();
+            var expressionArray = expression.Split(' ');
+            var values = new Stack<string>();
+            var numbers = new Stack<string>();
 
             for (int i = expression.Length - 1; i >= 0; i--)
-                allValues.Push(expression[i].ToString());
+                values.push(expression[i].ToString());
 
-            return GetResult(allValues, numbersValues);
+            return GetResult(values, numbers);
         }
 
-        public static double GetResult(Stack allValues, Stack numbersValues)
+        static double GetResult(Stack<string> values, Stack<string> numbers)
         {
-            while (allValues.Size() > 0)
+            var symbols = "+-*/%=";
+            while (values.size() > 0)
             {
-                var item = allValues.Pop();
-                double doubleItem;
-
-                if (double.TryParse((string)item, out doubleItem)) numbersValues.Push(doubleItem);
-                else
+                var item = values.pop();
+                if (double.TryParse(item, out double doubleItem)) numbers.push(doubleItem.ToString());
+                else if (symbols.Contains(item))
                 {
-                    if ((string)item == "+") numbersValues.Push((double)numbersValues.Pop() + (double)numbersValues.Pop());
-                    else if ((string)item == "-") numbersValues.Push((double)numbersValues.Pop() - (double)numbersValues.Pop());
-                    else if ((string)item == "*") numbersValues.Push((double)numbersValues.Pop() * (double)numbersValues.Pop());
-                    else if ((string)item == "/") numbersValues.Push((double)numbersValues.Pop() / (double)numbersValues.Pop());
-                    else if ((string)item == "=") break;
+                    if (numbers.size() < 1) return default(double);
+                    if (item == "=") break;
+                    if (numbers.size() < 2) return default(double);
+                    numbers.push(Eval(numbers.pop() + item + numbers.pop()));
                 }
             }
-            return (double)numbersValues.Pop();
+            if (numbers.size() < 1) return default(double);
+            return double.Parse(numbers.pop());
+        }
+
+        static string Eval(string expression)
+        {
+            var table = new DataTable();
+            return table.Compute(expression, string.Empty).ToString();
         }
     }
 }

@@ -1,60 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Stack
+namespace AlgorithmsDataStructures
 {
-    class Stack
+    public class Stack<T>
     {
-        private List<object> StackArray;
+        public List<T> StackArray;
 
         public Stack()
         {
-            StackArray = new List<object>();
+            StackArray = new List<T>();
         }
 
-        public int Size()
+        public int size()
         {
             return StackArray.Count;
         }
 
-        public void Push(object item)
+        public T pop()
         {
-            StackArray.Insert(0, item);
+            if (StackArray.Count <= 0) return default(T);
+            var item = StackArray[StackArray.Count - 1];
+            StackArray.RemoveAt(StackArray.Count - 1);
+            return item;
         }
 
-        public object Pop()
+        public void push(T item)
         {
-            try
-            {
-                var lastItem = StackArray[0]; 
-                StackArray.RemoveAt(0);
-                return lastItem;
-            }
-            catch(ArgumentOutOfRangeException)
-            {
-                Console.Write("Стэк пуст! Извлекать нечего!");
-                return null;
-            }
+            StackArray.Add(item);
         }
 
-        public object Peak()
+        public T peak()
         {
-            try
-            {
-                return StackArray[0];
-            }
-            catch(ArgumentOutOfRangeException)
-            {
-                Console.WriteLine("Стэк пуст! Последнего элемента не существует!");
-                return null;
-            }
-        }
-
-        public void Write()
-        {
-            foreach (var e in StackArray)
-                Console.Write(e + " ");
-            Console.WriteLine();
+            if (StackArray.Count <= 0) return default(T);
+            return StackArray[StackArray.Count - 1];
         }
     }
 }

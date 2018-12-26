@@ -12,12 +12,12 @@ namespace AlgorithmsDataStructures
             StackArray = new List<T>();
         }
 
-        public int size()
+        public int Size()
         {
             return StackArray.Count;
         }
 
-        public T pop()
+        public T Pop()
         {
             if (StackArray.Count <= 0) return default(T);
             var item = StackArray[StackArray.Count - 1];
@@ -25,12 +25,12 @@ namespace AlgorithmsDataStructures
             return item;
         }
 
-        public void push(T item)
+        public void Push(T item)
         {
             StackArray.Add(item);
         }
 
-        public T peak()
+        public T Peek()
         {
             if (StackArray.Count <= 0) return default(T);
             return StackArray[StackArray.Count - 1];

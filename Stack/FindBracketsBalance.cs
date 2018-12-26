@@ -8,12 +8,12 @@
 
             foreach (var item in line)
             {
-                if (item == '(') stack.push(item);
+                if (item == '(') stack.Push(item);
                 else if (item == ')')
-                    if (stack.pop() == default(char)) return false;
+                    if (stack.Pop() == default(char)) return false;
             }
 
-            if (stack.size() == 0) return true;
+            if (stack.Size() == 0) return true;
             return false;
         }
     }

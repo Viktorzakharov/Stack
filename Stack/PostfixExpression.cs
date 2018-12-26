@@ -11,7 +11,7 @@ namespace AlgorithmsDataStructures
             var numbers = new Stack<string>();
 
             for (int i = expression.Length - 1; i >= 0; i--)
-                values.push(expression[i].ToString());
+                values.Push(expression[i].ToString());
 
             return GetResult(values, numbers);
         }
@@ -19,20 +19,20 @@ namespace AlgorithmsDataStructures
         static double GetResult(Stack<string> values, Stack<string> numbers)
         {
             var symbols = "+-*/%=";
-            while (values.size() > 0)
+            while (values.Size() > 0)
             {
-                var item = values.pop();
-                if (double.TryParse(item, out double doubleItem)) numbers.push(doubleItem.ToString());
+                var item = values.Pop();
+                if (double.TryParse(item, out double doubleItem)) numbers.Push(doubleItem.ToString());
                 else if (symbols.Contains(item))
                 {
-                    if (numbers.size() < 1) return default(double);
+                    if (numbers.Size() < 1) return default(double);
                     if (item == "=") break;
-                    if (numbers.size() < 2) return default(double);
-                    numbers.push(Eval(numbers.pop() + item + numbers.pop()));
+                    if (numbers.Size() < 2) return default(double);
+                    numbers.Push(Eval(numbers.Pop() + item + numbers.Pop()));
                 }
             }
-            if (numbers.size() < 1) return default(double);
-            return double.Parse(numbers.pop());
+            if (numbers.Size() < 1) return default(double);
+            return double.Parse(numbers.Pop());
         }
 
         static string Eval(string expression)
